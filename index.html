@@ -6,7 +6,7 @@
 <title>KHAIR — Goodness in Every Breath</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Jost:wght@200;300;400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,600&family=Jost:wght@200;300;400;500;600&display=swap" rel="stylesheet">
 <style>
 :root {
   --sandstone: #C8B89A;
@@ -16,7 +16,6 @@
   --earth-mid: #3D3530;
   --earth-soft: #6B5F58;
   --olive: #7A8B6F;
-  --olive-light: #A8B89C;
   --clay: #A0725A;
   --soft-white: #FAF8F4;
   --gold: #B89A5A;
@@ -26,9 +25,7 @@
 }
 
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
 html { scroll-behavior: smooth; }
-
 body {
   background: var(--soft-white);
   color: var(--earth);
@@ -37,991 +34,651 @@ body {
   overflow-x: hidden;
 }
 
-/* ─── CUSTOM CURSOR ─── */
+/* ─── CURSOR ─── */
 .cursor {
-  width: 8px; height: 8px;
+  width: 10px; height: 10px;
   background: var(--gold);
   border-radius: 50%;
-  position: fixed;
-  top: 0; left: 0;
-  pointer-events: none;
-  z-index: 9999;
-  transition: transform 0.15s ease;
+  position: fixed; top: 0; left: 0;
+  pointer-events: none; z-index: 9999;
   mix-blend-mode: multiply;
 }
 .cursor-ring {
-  width: 32px; height: 32px;
-  border: 1px solid var(--gold-muted);
+  width: 38px; height: 38px;
+  border: 1.5px solid var(--gold-muted);
   border-radius: 50%;
-  position: fixed;
-  top: 0; left: 0;
-  pointer-events: none;
-  z-index: 9998;
-  transition: transform 0.4s ease, width 0.3s, height 0.3s, border-color 0.3s;
-  opacity: 0.6;
+  position: fixed; top: 0; left: 0;
+  pointer-events: none; z-index: 9998;
+  transition: transform 0.4s ease;
+  opacity: 0.5;
 }
-body:hover .cursor { opacity: 1; }
 
-/* ─── GRAIN OVERLAY ─── */
+/* ─── GRAIN ─── */
 body::before {
   content: '';
-  position: fixed;
-  inset: 0;
+  position: fixed; inset: 0;
   background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
-  pointer-events: none;
-  z-index: 9000;
-  opacity: 0.4;
+  pointer-events: none; z-index: 9000; opacity: 0.35;
 }
 
 /* ─── NAV ─── */
 nav {
-  position: fixed;
-  top: 0; left: 0; right: 0;
-  z-index: 100;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 1.5rem 3rem;
-  mix-blend-mode: multiply;
-  transition: background 0.4s, padding 0.4s;
+  position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 1.75rem 3.5rem;
+  transition: background 0.4s, padding 0.4s, box-shadow 0.4s;
 }
 nav.scrolled {
-  background: rgba(242,237,228,0.92);
-  backdrop-filter: blur(12px);
-  padding: 1rem 3rem;
-  mix-blend-mode: normal;
-  box-shadow: 0 1px 0 rgba(42,36,32,0.08);
+  background: rgba(242,237,228,0.97);
+  backdrop-filter: blur(16px);
+  padding: 1.1rem 3.5rem;
+  box-shadow: 0 1px 0 rgba(42,36,32,0.1);
 }
 .nav-logo {
   font-family: 'Cormorant Garamond', serif;
-  font-size: 1.5rem;
-  font-weight: 300;
-  letter-spacing: 0.35em;
-  color: var(--earth);
-  text-decoration: none;
-}
-.nav-logo span {
-  font-size: 0.65em;
-  letter-spacing: 0.15em;
-  color: var(--gold);
-  margin-left: 2px;
-}
-.nav-links {
-  display: flex;
-  gap: 2.5rem;
-  list-style: none;
-}
-.nav-links a {
-  font-size: 11px;
+  font-size: 1.8rem;
   font-weight: 400;
-  letter-spacing: 0.18em;
-  text-transform: uppercase;
-  color: var(--earth-soft);
-  text-decoration: none;
-  transition: color 0.2s;
-  position: relative;
-}
-.nav-links a::after {
-  content: '';
-  position: absolute;
-  bottom: -2px; left: 0;
-  width: 0; height: 1px;
-  background: var(--gold);
-  transition: width 0.3s;
-}
-.nav-links a:hover { color: var(--earth); }
-.nav-links a:hover::after { width: 100%; }
-.nav-cta {
-  font-size: 10px;
-  font-weight: 400;
-  letter-spacing: 0.2em;
-  text-transform: uppercase;
+  letter-spacing: 0.4em;
   color: var(--soft-white);
-  background: var(--earth);
-  padding: 10px 22px;
   text-decoration: none;
-  transition: background 0.2s, color 0.2s;
+  transition: color 0.3s;
 }
-.nav-cta:hover { background: var(--clay); }
+nav.scrolled .nav-logo { color: var(--earth); }
+.nav-logo span { font-size: 0.6em; letter-spacing: 0.15em; color: var(--gold); margin-left: 4px; }
+.nav-links { display: flex; gap: 2.5rem; list-style: none; }
+.nav-links a {
+  font-size: 11px; font-weight: 500; letter-spacing: 0.22em; text-transform: uppercase;
+  color: rgba(255,255,255,0.65); text-decoration: none; transition: color 0.2s; position: relative;
+}
+nav.scrolled .nav-links a { color: var(--earth-soft); }
+.nav-links a::after {
+  content: ''; position: absolute; bottom: -3px; left: 0;
+  width: 0; height: 1px; background: var(--gold); transition: width 0.3s;
+}
+.nav-links a:hover::after { width: 100%; }
+.nav-links a:hover { color: white; }
+nav.scrolled .nav-links a:hover { color: var(--earth); }
+.nav-cta {
+  font-size: 10px; font-weight: 600; letter-spacing: 0.25em; text-transform: uppercase;
+  color: var(--earth); background: var(--gold); padding: 12px 26px;
+  text-decoration: none; transition: background 0.2s, transform 0.2s;
+}
+.nav-cta:hover { background: var(--gold-light); transform: translateY(-1px); }
 
 /* ─── HERO ─── */
 #hero {
   min-height: 100vh;
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  position: relative;
-  overflow: hidden;
+  display: grid; grid-template-columns: 55% 45%;
+  position: relative; overflow: hidden;
 }
 .hero-left {
   background: var(--earth);
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-end;
-  padding: 8rem 4rem 6rem;
-  position: relative;
-  overflow: hidden;
+  display: flex; flex-direction: column; justify-content: center;
+  padding: 9rem 5rem 7rem;
+  position: relative; overflow: hidden;
 }
 .hero-left::before {
   content: 'خير';
-  position: absolute;
-  top: 50%;
-  left: 50%;
+  position: absolute; top: 50%; left: 50%;
   transform: translate(-50%, -50%);
   font-family: 'Cormorant Garamond', serif;
-  font-size: 22rem;
-  color: rgba(255,255,255,0.03);
-  pointer-events: none;
-  line-height: 1;
-  white-space: nowrap;
+  font-size: 28rem; color: rgba(255,255,255,0.035);
+  pointer-events: none; line-height: 1; white-space: nowrap;
+}
+/* Animated gold line accent */
+.hero-left::after {
+  content: '';
+  position: absolute; left: 0; top: 0; bottom: 0;
+  width: 4px;
+  background: linear-gradient(to bottom, transparent 0%, var(--gold) 30%, var(--gold-light) 60%, transparent 100%);
+  opacity: 0.6;
 }
 .hero-eyebrow {
-  font-size: 10px;
-  font-weight: 400;
-  letter-spacing: 0.3em;
-  text-transform: uppercase;
-  color: var(--gold);
-  margin-bottom: 2rem;
-  opacity: 0;
-  transform: translateY(20px);
+  font-size: 11px; font-weight: 500; letter-spacing: 0.35em; text-transform: uppercase;
+  color: var(--gold); margin-bottom: 2.5rem;
+  opacity: 0; transform: translateY(20px);
   animation: fadeUp 0.8s 0.3s forwards;
+  display: flex; align-items: center; gap: 1rem;
 }
+.hero-eyebrow::before { content: ''; display: block; width: 40px; height: 1px; background: var(--gold); }
 .hero-title {
   font-family: 'Cormorant Garamond', serif;
-  font-size: clamp(3.5rem, 6vw, 5.5rem);
-  font-weight: 300;
-  line-height: 1.0;
+  font-size: clamp(4rem, 7vw, 7rem);
+  font-weight: 300; line-height: 0.95;
   color: var(--sandstone-light);
-  margin-bottom: 2rem;
-  opacity: 0;
-  transform: translateY(30px);
+  margin-bottom: 2.5rem;
+  opacity: 0; transform: translateY(30px);
   animation: fadeUp 0.9s 0.5s forwards;
+  letter-spacing: -0.01em;
 }
-.hero-title em {
-  font-style: italic;
-  color: var(--gold-light);
+.hero-title em { font-style: italic; color: var(--gold-light); }
+.hero-title strong {
+  display: block; font-weight: 300;
+  font-size: 0.45em; letter-spacing: 0.3em;
+  text-transform: uppercase; color: var(--sandstone);
+  margin-bottom: 0.5rem; font-family: 'Jost', sans-serif;
 }
 .hero-body {
-  font-size: 13px;
-  font-weight: 300;
-  line-height: 1.9;
-  color: rgba(232,221,208,0.6);
-  max-width: 360px;
-  margin-bottom: 3rem;
-  opacity: 0;
-  transform: translateY(20px);
+  font-size: 15px; font-weight: 300; line-height: 1.9;
+  color: rgba(232,221,208,0.65); max-width: 420px;
+  margin-bottom: 3.5rem;
+  opacity: 0; transform: translateY(20px);
   animation: fadeUp 0.9s 0.7s forwards;
 }
 .hero-actions {
-  display: flex;
-  gap: 1.5rem;
-  align-items: center;
-  opacity: 0;
-  transform: translateY(20px);
+  display: flex; gap: 1.5rem; align-items: center;
+  opacity: 0; transform: translateY(20px);
   animation: fadeUp 0.9s 0.9s forwards;
 }
 .btn-primary {
-  font-size: 10px;
-  font-weight: 400;
-  letter-spacing: 0.25em;
-  text-transform: uppercase;
-  color: var(--earth);
-  background: var(--sandstone);
-  padding: 14px 32px;
-  text-decoration: none;
-  transition: background 0.2s, transform 0.2s;
-  display: inline-block;
+  font-size: 11px; font-weight: 600; letter-spacing: 0.25em; text-transform: uppercase;
+  color: var(--earth); background: var(--gold); padding: 16px 36px;
+  text-decoration: none; transition: background 0.2s, transform 0.2s; display: inline-block;
 }
-.btn-primary:hover { background: var(--sandstone-light); transform: translateY(-1px); }
+.btn-primary:hover { background: var(--gold-light); transform: translateY(-2px); }
 .btn-ghost {
-  font-size: 10px;
-  font-weight: 400;
-  letter-spacing: 0.2em;
-  text-transform: uppercase;
-  color: var(--sandstone);
-  text-decoration: none;
-  border-bottom: 1px solid rgba(200,184,154,0.3);
-  padding-bottom: 2px;
+  font-size: 11px; font-weight: 400; letter-spacing: 0.2em; text-transform: uppercase;
+  color: var(--sandstone); text-decoration: none;
+  border-bottom: 1px solid rgba(200,184,154,0.35); padding-bottom: 3px;
   transition: border-color 0.2s, color 0.2s;
 }
 .btn-ghost:hover { color: var(--gold-light); border-color: var(--gold-light); }
 
 .hero-right {
   background: var(--paper);
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  padding: 8rem 4rem 6rem;
-  position: relative;
-  overflow: hidden;
+  display: flex; flex-direction: column; justify-content: center; align-items: center;
+  padding: 8rem 4rem 6rem; position: relative; overflow: hidden;
 }
 .hero-right::after {
   content: '';
-  position: absolute;
-  bottom: 0; right: 0;
-  width: 70%; height: 70%;
-  background: radial-gradient(ellipse at bottom right, rgba(184,154,90,0.12) 0%, transparent 70%);
+  position: absolute; bottom: 0; right: 0; width: 80%; height: 80%;
+  background: radial-gradient(ellipse at bottom right, rgba(184,154,90,0.15) 0%, transparent 70%);
   pointer-events: none;
 }
 .hero-visual {
-  width: 100%;
-  max-width: 380px;
-  aspect-ratio: 3/4;
+  width: 100%; max-width: 360px; aspect-ratio: 3/4;
   background: var(--sandstone-light);
-  position: relative;
-  overflow: hidden;
-  opacity: 0;
-  animation: fadeIn 1.2s 0.8s forwards;
+  position: relative; overflow: hidden;
+  opacity: 0; animation: fadeIn 1.2s 0.8s forwards;
+  box-shadow: 0 40px 80px rgba(42,36,32,0.15);
 }
 .hero-visual-inner {
-  position: absolute;
-  inset: 0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-direction: column;
-  gap: 1rem;
+  position: absolute; inset: 0;
+  display: flex; align-items: center; justify-content: center;
+  flex-direction: column; gap: 1.5rem;
 }
-.cushion-illustration {
-  width: 160px;
-  height: 80px;
+.cushion-stack { display: flex; flex-direction: column; align-items: center; gap: 12px; }
+.zafu {
+  width: 140px; height: 70px;
   background: var(--sandstone);
   border-radius: 50%;
+  box-shadow: 0 15px 40px rgba(42,36,32,0.2), inset 0 -6px 16px rgba(0,0,0,0.08);
   position: relative;
-  box-shadow: 0 20px 60px rgba(42,36,32,0.25), inset 0 -8px 20px rgba(0,0,0,0.1);
 }
-.cushion-illustration::after {
+.zafu::after {
   content: '';
-  position: absolute;
-  top: 50%; left: 50%;
+  position: absolute; top: 50%; left: 50%;
   transform: translate(-50%, -50%);
-  width: 80%;
-  height: 60%;
-  background: rgba(255,255,255,0.15);
-  border-radius: 50%;
+  width: 75%; height: 55%;
+  background: rgba(255,255,255,0.12); border-radius: 50%;
+}
+.zabuton {
+  width: 200px; height: 20px;
+  background: var(--earth-soft);
+  border-radius: 4px;
+  box-shadow: 0 8px 24px rgba(42,36,32,0.2);
+}
+.hero-visual-label {
+  font-size: 9px; letter-spacing: 0.25em; text-transform: uppercase;
+  color: var(--earth-soft); margin-top: 0.5rem; text-align: center;
+}
+.hero-visual-price {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.6rem; font-weight: 300;
+  color: var(--earth); letter-spacing: 0.05em;
 }
 .hero-tag {
-  position: absolute;
-  bottom: 2rem; left: 2rem;
-  right: 2rem;
-  background: var(--earth);
-  color: var(--sandstone-light);
-  padding: 1.25rem 1.5rem;
-  opacity: 0;
-  animation: fadeUp 0.9s 1.2s forwards;
+  position: absolute; bottom: 2rem; left: 2rem; right: 2rem;
+  background: var(--earth); color: var(--sandstone-light);
+  padding: 1.5rem 1.75rem;
+  opacity: 0; animation: fadeUp 0.9s 1.2s forwards;
 }
 .hero-tag-eyebrow {
-  font-size: 9px;
-  letter-spacing: 0.2em;
-  text-transform: uppercase;
-  color: var(--gold);
-  margin-bottom: 6px;
+  font-size: 9px; letter-spacing: 0.22em; text-transform: uppercase;
+  color: var(--gold); margin-bottom: 8px;
 }
 .hero-tag-text {
   font-family: 'Cormorant Garamond', serif;
-  font-size: 1.1rem;
-  font-weight: 300;
-  font-style: italic;
-  line-height: 1.4;
+  font-size: 1.2rem; font-weight: 300; font-style: italic; line-height: 1.4;
 }
 
 /* ─── MARQUEE ─── */
 .marquee-bar {
-  background: var(--gold);
-  padding: 12px 0;
-  overflow: hidden;
-  position: relative;
+  background: var(--earth); padding: 14px 0; overflow: hidden;
+  border-top: 1px solid rgba(184,154,90,0.2);
+  border-bottom: 1px solid rgba(184,154,90,0.2);
 }
 .marquee-track {
-  display: flex;
-  gap: 0;
-  animation: marquee 30s linear infinite;
-  white-space: nowrap;
+  display: flex; animation: marquee 35s linear infinite; white-space: nowrap;
 }
 .marquee-item {
-  font-size: 10px;
-  font-weight: 400;
-  letter-spacing: 0.28em;
-  text-transform: uppercase;
-  color: var(--earth);
-  padding: 0 3rem;
-  flex-shrink: 0;
+  font-size: 10px; font-weight: 500; letter-spacing: 0.3em; text-transform: uppercase;
+  color: rgba(200,184,154,0.5); padding: 0 2.5rem; flex-shrink: 0;
 }
-.marquee-dot {
-  color: rgba(42,36,32,0.4);
-}
-@keyframes marquee {
-  from { transform: translateX(0); }
-  to { transform: translateX(-50%); }
-}
+.marquee-item.accent { color: var(--gold); }
+@keyframes marquee { from { transform: translateX(0); } to { transform: translateX(-50%); } }
 
 /* ─── SECTION SHARED ─── */
 section { position: relative; }
 .section-label {
-  font-size: 9px;
-  font-weight: 400;
-  letter-spacing: 0.35em;
-  text-transform: uppercase;
-  color: var(--gold-muted);
-  margin-bottom: 1.5rem;
-  display: flex;
-  align-items: center;
-  gap: 1rem;
+  font-size: 10px; font-weight: 500; letter-spacing: 0.4em; text-transform: uppercase;
+  color: var(--gold-muted); margin-bottom: 1.5rem;
+  display: flex; align-items: center; gap: 1rem;
 }
 .section-label::before {
-  content: '';
-  display: block;
-  width: 32px; height: 1px;
-  background: var(--gold-muted);
+  content: ''; display: block; width: 40px; height: 1px; background: var(--gold-muted);
 }
 .section-title {
   font-family: 'Cormorant Garamond', serif;
-  font-size: clamp(2.2rem, 4vw, 3.5rem);
-  font-weight: 300;
-  line-height: 1.15;
-  color: var(--earth);
+  font-size: clamp(2.8rem, 5vw, 4.5rem);
+  font-weight: 300; line-height: 1.05; color: var(--earth);
 }
-.section-title em {
-  font-style: italic;
-  color: var(--clay);
-}
+.section-title em { font-style: italic; color: var(--clay); }
 
 /* ─── PHILOSOPHY ─── */
-#philosophy {
-  background: var(--soft-white);
-  padding: 8rem 0;
-}
+#philosophy { background: var(--soft-white); padding: 9rem 0; }
 .philosophy-inner {
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 0 4rem;
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 6rem;
-  align-items: center;
+  max-width: 1280px; margin: 0 auto; padding: 0 5rem;
+  display: grid; grid-template-columns: 1fr 1fr; gap: 7rem; align-items: center;
 }
-.philosophy-text .section-title {
-  margin-bottom: 2rem;
-}
+.philosophy-text .section-title { margin-bottom: 2.5rem; }
 .philosophy-text p {
-  font-size: 15px;
-  font-weight: 300;
-  line-height: 1.9;
-  color: var(--earth-soft);
-  margin-bottom: 1.5rem;
-  max-width: 480px;
+  font-size: 16px; font-weight: 300; line-height: 2;
+  color: var(--earth-soft); margin-bottom: 1.75rem; max-width: 500px;
+}
+.philosophy-stat {
+  display: flex; gap: 3rem; margin-top: 3rem; padding-top: 3rem;
+  border-top: 1px solid rgba(42,36,32,0.08);
+}
+.stat-item {}
+.stat-num {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 3rem; font-weight: 300; color: var(--gold); line-height: 1;
+}
+.stat-label {
+  font-size: 10px; font-weight: 500; letter-spacing: 0.2em; text-transform: uppercase;
+  color: var(--earth-soft); margin-top: 4px;
 }
 .philosophy-quote {
-  background: var(--earth);
-  padding: 4rem;
-  position: relative;
+  background: var(--earth); padding: 5rem; position: relative;
 }
 .philosophy-quote::before {
   content: '"';
-  position: absolute;
-  top: 2rem; left: 3rem;
-  font-family: 'Cormorant Garamond', serif;
-  font-size: 8rem;
-  color: rgba(200,184,154,0.15);
-  line-height: 1;
+  position: absolute; top: 2.5rem; left: 3.5rem;
+  font-family: 'Cormorant Garamond', serif; font-size: 10rem;
+  color: rgba(200,184,154,0.1); line-height: 1;
 }
 .philosophy-quote blockquote {
   font-family: 'Cormorant Garamond', serif;
-  font-size: 1.6rem;
-  font-weight: 300;
-  font-style: italic;
-  line-height: 1.6;
-  color: var(--sandstone-light);
-  position: relative;
-  z-index: 1;
+  font-size: 1.9rem; font-weight: 300; font-style: italic; line-height: 1.6;
+  color: var(--sandstone-light); position: relative; z-index: 1;
 }
 .philosophy-quote cite {
-  display: block;
-  margin-top: 1.5rem;
-  font-family: 'Jost', sans-serif;
-  font-size: 10px;
-  letter-spacing: 0.2em;
-  text-transform: uppercase;
-  color: var(--gold);
-  font-style: normal;
+  display: block; margin-top: 2rem;
+  font-family: 'Jost', sans-serif; font-size: 10px;
+  letter-spacing: 0.22em; text-transform: uppercase; color: var(--gold); font-style: normal;
 }
 
 /* ─── VALUES ─── */
-#values {
-  background: var(--paper);
-  padding: 8rem 0;
-}
-.values-inner {
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 0 4rem;
-}
-.values-header {
-  display: flex;
-  align-items: flex-end;
-  justify-content: space-between;
-  margin-bottom: 5rem;
-}
+#values { background: var(--paper); padding: 9rem 0; }
+.values-inner { max-width: 1280px; margin: 0 auto; padding: 0 5rem; }
+.values-header { margin-bottom: 5rem; }
 .values-grid {
-  display: grid;
-  grid-template-columns: repeat(5, 1fr);
-  gap: 0;
+  display: grid; grid-template-columns: repeat(5, 1fr); gap: 0;
   border: 1px solid rgba(42,36,32,0.1);
 }
 .value-card {
-  padding: 3rem 2rem;
+  padding: 3.5rem 2.5rem;
   border-right: 1px solid rgba(42,36,32,0.08);
-  transition: background 0.3s;
-  position: relative;
-  overflow: hidden;
+  transition: background 0.35s; position: relative; overflow: hidden;
 }
 .value-card:last-child { border-right: none; }
 .value-card::before {
-  content: '';
-  position: absolute;
-  bottom: 0; left: 0;
-  width: 100%; height: 0;
-  background: var(--earth);
-  transition: height 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+  content: ''; position: absolute; bottom: 0; left: 0;
+  width: 100%; height: 0; background: var(--earth);
+  transition: height 0.45s cubic-bezier(0.25, 0.8, 0.25, 1);
 }
 .value-card:hover::before { height: 100%; }
-.value-card:hover .value-num,
-.value-card:hover .value-title,
-.value-card:hover .value-desc { color: var(--sandstone-light); position: relative; z-index: 1; }
-.value-card:hover .value-num { color: var(--gold); }
 .value-num {
   font-family: 'Cormorant Garamond', serif;
-  font-size: 3rem;
-  font-weight: 300;
-  color: var(--sandstone);
-  line-height: 1;
-  margin-bottom: 1.5rem;
-  transition: color 0.3s;
-  position: relative; z-index: 1;
+  font-size: 3.5rem; font-weight: 300; color: var(--sandstone);
+  line-height: 1; margin-bottom: 1.5rem;
+  transition: color 0.3s; position: relative; z-index: 1;
 }
 .value-title {
-  font-size: 11px;
-  font-weight: 500;
-  letter-spacing: 0.15em;
-  text-transform: uppercase;
-  color: var(--earth);
-  margin-bottom: 1rem;
-  transition: color 0.3s;
-  position: relative; z-index: 1;
+  font-size: 12px; font-weight: 600; letter-spacing: 0.18em; text-transform: uppercase;
+  color: var(--earth); margin-bottom: 1rem;
+  transition: color 0.3s; position: relative; z-index: 1;
 }
 .value-desc {
-  font-size: 12px;
-  font-weight: 300;
-  line-height: 1.7;
-  color: var(--earth-soft);
-  transition: color 0.3s;
-  position: relative; z-index: 1;
+  font-size: 13px; font-weight: 300; line-height: 1.8; color: var(--earth-soft);
+  transition: color 0.3s; position: relative; z-index: 1;
+}
+.value-card:hover .value-num { color: var(--gold); }
+.value-card:hover .value-title,
+.value-card:hover .value-desc { color: var(--sandstone-light); }
+
+/* ─── PRODUCT HERO ─── */
+#products { background: var(--soft-white); padding: 9rem 0; }
+.products-inner { max-width: 1280px; margin: 0 auto; padding: 0 5rem; }
+.products-header {
+  display: grid; grid-template-columns: 1fr 1fr;
+  gap: 4rem; align-items: end; margin-bottom: 5rem;
+}
+.products-header-right p {
+  font-size: 16px; font-weight: 300; color: var(--earth-soft);
+  line-height: 1.9; max-width: 420px;
 }
 
-/* ─── PRODUCTS ─── */
-#products {
-  background: var(--soft-white);
-  padding: 8rem 0;
+/* Set hero card */
+.product-set-hero {
+  background: var(--earth);
+  padding: 4rem 5rem;
+  display: grid; grid-template-columns: 1fr 1fr;
+  gap: 4rem; align-items: center;
+  margin-bottom: 3px;
+  position: relative; overflow: hidden;
 }
-.products-inner {
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 0 4rem;
+.product-set-hero::before {
+  content: 'خير';
+  position: absolute; right: -2rem; top: 50%;
+  transform: translateY(-50%);
+  font-family: 'Cormorant Garamond', serif; font-size: 18rem;
+  color: rgba(255,255,255,0.03); pointer-events: none; line-height: 1;
 }
-.products-header {
-  display: flex;
-  align-items: flex-end;
-  justify-content: space-between;
-  margin-bottom: 4rem;
+.set-hero-label {
+  font-size: 10px; font-weight: 600; letter-spacing: 0.3em; text-transform: uppercase;
+  color: var(--gold); margin-bottom: 1.5rem;
+  display: flex; align-items: center; gap: 0.75rem;
 }
-.products-header p {
-  font-size: 13px;
-  font-weight: 300;
-  color: var(--earth-soft);
-  max-width: 300px;
-  line-height: 1.7;
-  text-align: right;
+.set-hero-label::before { content: '★'; font-size: 0.7em; }
+.set-hero-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 3rem; font-weight: 300; color: var(--sandstone-light);
+  line-height: 1.1; margin-bottom: 1rem;
 }
-.product-lines {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 2px;
-  margin-bottom: 2px;
+.set-hero-title em { font-style: italic; color: var(--gold-light); }
+.set-hero-sub {
+  font-size: 14px; font-weight: 300; color: rgba(232,221,208,0.55); line-height: 1.8;
+  margin-bottom: 2rem;
 }
-.product-line-wide {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 2px;
+.set-hero-items { display: flex; flex-direction: column; gap: 10px; margin-bottom: 2.5rem; }
+.set-hero-item {
+  font-size: 13px; font-weight: 300; color: rgba(232,221,208,0.7);
+  display: flex; align-items: center; gap: 12px;
+}
+.set-hero-item::before {
+  content: ''; display: block; width: 20px; height: 1px;
+  background: var(--gold); flex-shrink: 0;
+}
+.set-price {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 2.5rem; font-weight: 300; color: var(--sandstone-light);
+  margin-bottom: 0.5rem;
+}
+.set-price-label {
+  font-size: 10px; font-weight: 400; letter-spacing: 0.15em; text-transform: uppercase;
+  color: rgba(232,221,208,0.35);
+}
+.set-visual {
+  display: flex; flex-direction: column; align-items: center;
+  gap: 1rem; padding: 2rem;
+}
+.set-zafu-large {
+  width: 180px; height: 90px; background: var(--sandstone);
+  border-radius: 50%;
+  box-shadow: 0 20px 50px rgba(0,0,0,0.3), inset 0 -8px 20px rgba(0,0,0,0.1);
+  position: relative;
+}
+.set-zafu-large::after {
+  content: ''; position: absolute; top: 50%; left: 50%;
+  transform: translate(-50%, -50%);
+  width: 70%; height: 50%; background: rgba(255,255,255,0.1); border-radius: 50%;
+}
+.set-zabuton-large {
+  width: 240px; height: 24px; background: rgba(200,184,154,0.25);
+  border-radius: 4px;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.2);
+}
+.set-visual-label {
+  font-size: 9px; letter-spacing: 0.2em; text-transform: uppercase;
+  color: rgba(200,184,154,0.35); text-align: center; margin-top: 0.5rem;
+}
+
+/* Individual product cards */
+.product-individuals {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 3px;
+  margin-bottom: 3px;
 }
 .product-card {
-  background: var(--paper);
-  padding: 3rem;
-  position: relative;
-  overflow: hidden;
-  cursor: pointer;
+  background: var(--paper); padding: 3.5rem;
+  position: relative; overflow: hidden; cursor: pointer;
   transition: transform 0.3s;
 }
 .product-card:hover { transform: translateY(-4px); }
 .product-card::after {
-  content: '';
-  position: absolute;
-  inset: 0;
-  border: 1px solid transparent;
-  transition: border-color 0.3s;
+  content: ''; position: absolute; inset: 0;
+  border: 2px solid transparent; transition: border-color 0.3s; pointer-events: none;
 }
 .product-card:hover::after { border-color: var(--gold); }
-.product-card.dark {
-  background: var(--earth);
-}
+.product-card.dark { background: var(--earth); }
 .product-card.olive-bg { background: var(--olive); }
-.product-card-line {
-  font-size: 9px;
-  letter-spacing: 0.25em;
-  text-transform: uppercase;
-  color: var(--gold-muted);
-  margin-bottom: 2rem;
+.product-card-label {
+  font-size: 10px; font-weight: 600; letter-spacing: 0.28em; text-transform: uppercase;
+  color: var(--gold-muted); margin-bottom: 2rem;
 }
-.product-card.dark .product-card-line { color: var(--gold); }
-.product-card.olive-bg .product-card-line { color: rgba(255,255,255,0.6); }
-.product-card-visual {
-  margin-bottom: 2rem;
-}
+.product-card.dark .product-card-label { color: var(--gold); }
+.product-card.olive-bg .product-card-label { color: rgba(255,255,255,0.6); }
 .product-icon {
-  width: 60px; height: 60px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  width: 64px; height: 64px; display: flex; align-items: center; justify-content: center;
+  margin-bottom: 2rem;
 }
 .product-icon svg { width: 100%; height: 100%; }
 .product-name {
   font-family: 'Cormorant Garamond', serif;
-  font-size: 1.5rem;
-  font-weight: 300;
-  color: var(--earth);
-  margin-bottom: 0.5rem;
+  font-size: 2rem; font-weight: 300; color: var(--earth); margin-bottom: 0.75rem;
+  line-height: 1.1;
 }
 .product-card.dark .product-name { color: var(--sandstone-light); }
 .product-card.olive-bg .product-name { color: white; }
 .product-sub {
-  font-size: 11px;
-  font-weight: 300;
-  color: var(--earth-soft);
-  line-height: 1.6;
+  font-size: 13px; font-weight: 300; color: var(--earth-soft); line-height: 1.7;
 }
 .product-card.dark .product-sub { color: rgba(232,221,208,0.5); }
 .product-card.olive-bg .product-sub { color: rgba(255,255,255,0.7); }
-.product-items {
-  margin-top: 1.5rem;
-  display: flex;
-  flex-direction: column;
-  gap: 6px;
-}
+.product-items { margin-top: 2rem; display: flex; flex-direction: column; gap: 8px; }
 .product-item {
-  font-size: 11px;
-  font-weight: 300;
-  color: var(--earth-soft);
-  display: flex;
-  align-items: center;
-  gap: 8px;
+  font-size: 12px; font-weight: 300; color: var(--earth-soft);
+  display: flex; align-items: center; gap: 10px;
 }
 .product-card.dark .product-item { color: rgba(232,221,208,0.5); }
 .product-item::before {
-  content: '';
-  display: block;
-  width: 16px; height: 1px;
-  background: var(--gold-muted);
-  flex-shrink: 0;
+  content: ''; display: block; width: 18px; height: 1px;
+  background: var(--gold-muted); flex-shrink: 0;
 }
 .product-card.dark .product-item::before { background: var(--gold); }
 
-/* ─── SUB-BRANDS ─── */
-#lines {
-  background: var(--earth);
-  padding: 8rem 0;
-}
-.lines-inner {
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 0 4rem;
-}
+/* ─── LINES ─── */
+#lines { background: var(--earth); padding: 9rem 0; }
+.lines-inner { max-width: 1280px; margin: 0 auto; padding: 0 5rem; }
 .lines-inner .section-label { color: var(--gold); }
 .lines-inner .section-label::before { background: var(--gold); }
 .lines-inner .section-title { color: var(--sandstone-light); }
 .lines-grid {
-  display: grid;
-  grid-template-columns: repeat(5, 1fr);
-  gap: 1px;
-  margin-top: 4rem;
-  background: rgba(255,255,255,0.05);
+  display: grid; grid-template-columns: repeat(5, 1fr);
+  gap: 1px; margin-top: 4rem; background: rgba(255,255,255,0.05);
 }
 .line-card {
-  background: var(--earth);
-  padding: 3rem 2rem;
-  transition: background 0.3s;
-  position: relative;
+  background: var(--earth); padding: 3.5rem 2.5rem; transition: background 0.3s;
 }
 .line-card:hover { background: var(--earth-mid); }
 .line-arabic {
-  font-family: 'Cormorant Garamond', serif;
-  font-size: 2.5rem;
-  color: rgba(200,184,154,0.15);
-  margin-bottom: 1.5rem;
-  line-height: 1;
+  font-family: 'Cormorant Garamond', serif; font-size: 3rem;
+  color: rgba(200,184,154,0.12); margin-bottom: 1.5rem; line-height: 1;
 }
 .line-name {
-  font-family: 'Cormorant Garamond', serif;
-  font-size: 1.2rem;
-  font-weight: 300;
-  color: var(--sandstone);
-  margin-bottom: 0.5rem;
+  font-family: 'Cormorant Garamond', serif; font-size: 1.35rem;
+  font-weight: 300; color: var(--sandstone); margin-bottom: 0.5rem;
 }
 .line-sub {
-  font-size: 10px;
-  font-weight: 400;
-  letter-spacing: 0.15em;
-  text-transform: uppercase;
-  color: var(--gold);
-  margin-bottom: 1.5rem;
+  font-size: 10px; font-weight: 600; letter-spacing: 0.18em; text-transform: uppercase;
+  color: var(--gold); margin-bottom: 1.75rem;
 }
-.line-items {
-  display: flex;
-  flex-direction: column;
-  gap: 4px;
-}
-.line-item {
-  font-size: 11px;
-  font-weight: 300;
-  color: rgba(232,221,208,0.4);
-}
+.line-items { display: flex; flex-direction: column; gap: 6px; }
+.line-item { font-size: 13px; font-weight: 300; color: rgba(232,221,208,0.4); }
 
 /* ─── IDENTITY ─── */
-#identity {
-  background: var(--paper);
-  padding: 8rem 0;
-}
-.identity-inner {
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 0 4rem;
-}
-.identity-grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
-  gap: 3rem;
-  margin-top: 4rem;
-}
-.identity-card {
-  padding: 2.5rem;
-  background: var(--soft-white);
-}
+#identity { background: var(--paper); padding: 9rem 0; }
+.identity-inner { max-width: 1280px; margin: 0 auto; padding: 0 5rem; }
+.identity-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 3rem; margin-top: 4.5rem; }
+.identity-card { padding: 3rem; background: var(--soft-white); }
 .identity-card-title {
-  font-size: 10px;
-  font-weight: 400;
-  letter-spacing: 0.2em;
-  text-transform: uppercase;
-  color: var(--gold-muted);
-  margin-bottom: 1.5rem;
-  padding-bottom: 1rem;
+  font-size: 10px; font-weight: 600; letter-spacing: 0.25em; text-transform: uppercase;
+  color: var(--gold-muted); margin-bottom: 2rem; padding-bottom: 1rem;
   border-bottom: 1px solid rgba(42,36,32,0.08);
 }
-.palette-swatches {
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-}
-.swatch-row {
-  display: flex;
-  gap: 8px;
-  align-items: center;
-}
-.swatch {
-  width: 32px; height: 32px;
-  border-radius: 50%;
-  flex-shrink: 0;
-}
-.swatch-label {
-  font-size: 11px;
-  font-weight: 300;
-  color: var(--earth-soft);
-}
-.swatch-label span {
-  font-size: 9px;
-  color: var(--earth-soft);
-  opacity: 0.6;
-  display: block;
-}
-.tagline-list {
-  display: flex;
-  flex-direction: column;
-  gap: 1rem;
-}
+.palette-swatches { display: flex; flex-direction: column; gap: 12px; }
+.swatch-row { display: flex; gap: 10px; align-items: center; }
+.swatch { width: 36px; height: 36px; border-radius: 50%; flex-shrink: 0; }
+.swatch-label { font-size: 13px; font-weight: 300; color: var(--earth-soft); }
+.swatch-label span { font-size: 10px; color: var(--earth-soft); opacity: 0.55; display: block; }
+.tagline-list { display: flex; flex-direction: column; gap: 1rem; }
 .tagline-item {
-  font-family: 'Cormorant Garamond', serif;
-  font-size: 1.1rem;
-  font-weight: 300;
-  font-style: italic;
-  color: var(--earth);
-  padding: 0.75rem 0;
-  border-bottom: 1px solid rgba(42,36,32,0.06);
-  cursor: pointer;
-  transition: color 0.2s;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
+  font-family: 'Cormorant Garamond', serif; font-size: 1.2rem;
+  font-weight: 300; font-style: italic; color: var(--earth);
+  padding: 0.9rem 0; border-bottom: 1px solid rgba(42,36,32,0.06);
+  transition: color 0.2s; display: flex; align-items: center; justify-content: space-between;
 }
-.tagline-item:hover { color: var(--clay); }
-.tagline-item.active { color: var(--clay); }
-.tagline-item .check { color: var(--gold); font-size: 0.7rem; }
-.voice-list {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 8px;
-}
+.tagline-item.active { color: var(--clay); font-size: 1.3rem; }
+.tagline-item .check { color: var(--gold); font-size: 0.8rem; }
+.voice-list { display: flex; flex-wrap: wrap; gap: 8px; }
 .voice-pill {
-  font-size: 10px;
-  font-weight: 400;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  padding: 6px 14px;
-  border: 1px solid rgba(42,36,32,0.15);
-  color: var(--earth-soft);
-  transition: all 0.2s;
-  cursor: default;
+  font-size: 10px; font-weight: 500; letter-spacing: 0.12em; text-transform: uppercase;
+  padding: 7px 16px; border: 1px solid rgba(42,36,32,0.15);
+  color: var(--earth-soft); transition: all 0.2s;
 }
-.voice-pill:hover {
-  background: var(--earth);
-  color: var(--sandstone-light);
-  border-color: var(--earth);
-}
-.type-samples { display: flex; flex-direction: column; gap: 1.5rem; }
-.type-sample-serif {
-  font-family: 'Cormorant Garamond', serif;
-  font-size: 2.5rem;
-  font-weight: 300;
-  color: var(--earth);
-  line-height: 1;
-}
-.type-sample-sans {
-  font-size: 0.75rem;
-  font-weight: 300;
-  letter-spacing: 0.2em;
-  text-transform: uppercase;
-  color: var(--earth-soft);
-}
-.type-sample-body {
-  font-size: 13px;
-  font-weight: 300;
-  color: var(--earth-soft);
-  line-height: 1.8;
-}
+.voice-pill:hover { background: var(--earth); color: var(--sandstone-light); border-color: var(--earth); }
+.type-samples { display: flex; flex-direction: column; gap: 1.75rem; }
+.type-sample-serif { font-family: 'Cormorant Garamond', serif; font-size: 3rem; font-weight: 300; color: var(--earth); line-height: 1; }
+.type-sample-sans { font-size: 0.8rem; font-weight: 400; letter-spacing: 0.22em; text-transform: uppercase; color: var(--earth-soft); }
+.type-sample-body { font-size: 14px; font-weight: 300; color: var(--earth-soft); line-height: 1.9; }
 
-/* ─── GTM PHASES ─── */
-#launch {
-  background: var(--soft-white);
-  padding: 8rem 0;
-}
-.launch-inner {
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 0 4rem;
-}
-.phases-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 2px;
-  margin-top: 4rem;
-}
+/* ─── LAUNCH ─── */
+#launch { background: var(--soft-white); padding: 9rem 0; }
+.launch-inner { max-width: 1280px; margin: 0 auto; padding: 0 5rem; }
+.phases-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 3px; margin-top: 4.5rem; }
 .phase-card {
-  background: var(--paper);
-  padding: 3.5rem 3rem;
-  position: relative;
-  overflow: hidden;
+  background: var(--paper); padding: 4rem 3.5rem;
+  position: relative; overflow: hidden;
 }
 .phase-card::before {
-  content: '';
-  position: absolute;
-  top: 0; left: 0;
-  width: 3px; height: 0;
-  background: var(--gold);
-  transition: height 0.5s;
+  content: ''; position: absolute; top: 0; left: 0;
+  width: 3px; height: 0; background: var(--gold); transition: height 0.5s;
 }
 .phase-card:hover::before { height: 100%; }
 .phase-num {
-  font-family: 'Cormorant Garamond', serif;
-  font-size: 5rem;
-  font-weight: 300;
-  color: var(--sandstone);
-  line-height: 1;
-  margin-bottom: 1.5rem;
+  font-family: 'Cormorant Garamond', serif; font-size: 6rem; font-weight: 300;
+  color: var(--sandstone); line-height: 1; margin-bottom: 1.5rem;
 }
 .phase-title {
-  font-size: 11px;
-  font-weight: 500;
-  letter-spacing: 0.15em;
-  text-transform: uppercase;
-  color: var(--earth);
-  margin-bottom: 1.5rem;
+  font-size: 12px; font-weight: 600; letter-spacing: 0.18em; text-transform: uppercase;
+  color: var(--earth); margin-bottom: 2rem;
 }
-.phase-items {
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-}
+.phase-items { display: flex; flex-direction: column; gap: 12px; }
 .phase-item {
-  font-size: 12px;
-  font-weight: 300;
-  color: var(--earth-soft);
-  padding-left: 1rem;
-  position: relative;
-  line-height: 1.5;
+  font-size: 13px; font-weight: 300; color: var(--earth-soft);
+  padding-left: 1.25rem; position: relative; line-height: 1.6;
 }
 .phase-item::before {
-  content: '';
-  position: absolute;
-  left: 0; top: 8px;
-  width: 4px; height: 1px;
-  background: var(--gold-muted);
+  content: ''; position: absolute; left: 0; top: 10px;
+  width: 5px; height: 1px; background: var(--gold-muted);
 }
+.phase-item.done { color: var(--olive); }
+.phase-item.done::before { background: var(--olive); }
 
-/* ─── STORY / CTA ─── */
+/* ─── STORY ─── */
 #story {
-  background: var(--earth);
-  padding: 10rem 0;
-  text-align: center;
-  position: relative;
-  overflow: hidden;
+  background: var(--earth); padding: 11rem 0;
+  text-align: center; position: relative; overflow: hidden;
 }
 #story::before {
-  content: 'خير';
-  position: absolute;
-  top: 50%;
-  left: 50%;
+  content: 'خير'; position: absolute; top: 50%; left: 50%;
   transform: translate(-50%, -50%);
-  font-family: 'Cormorant Garamond', serif;
-  font-size: 30rem;
-  color: rgba(255,255,255,0.025);
-  pointer-events: none;
-  line-height: 1;
+  font-family: 'Cormorant Garamond', serif; font-size: 35rem;
+  color: rgba(255,255,255,0.02); pointer-events: none; line-height: 1;
 }
 .story-inner {
-  max-width: 800px;
-  margin: 0 auto;
-  padding: 0 4rem;
-  position: relative;
-  z-index: 1;
+  max-width: 860px; margin: 0 auto; padding: 0 4rem;
+  position: relative; z-index: 1;
 }
-.story-inner .section-label {
-  justify-content: center;
-}
+.story-inner .section-label { justify-content: center; color: var(--gold); }
 .story-inner .section-label::before { display: none; }
 .story-inner .section-label::after {
-  content: '';
-  display: block;
-  width: 32px; height: 1px;
-  background: var(--gold-muted);
+  content: ''; display: block; width: 40px; height: 1px; background: var(--gold);
 }
-.story-inner .section-title { color: var(--sandstone-light); margin: 1rem 0 2.5rem; }
+.story-inner .section-title { color: var(--sandstone-light); margin: 1.5rem 0 3rem; font-size: clamp(3rem, 6vw, 5rem); }
 .story-inner .section-title em { color: var(--gold-light); }
 .story-body {
-  font-size: 15px;
-  font-weight: 300;
-  line-height: 2;
-  color: rgba(232,221,208,0.6);
-  margin-bottom: 3.5rem;
+  font-size: 17px; font-weight: 300; line-height: 2.1;
+  color: rgba(232,221,208,0.6); margin-bottom: 4rem;
 }
-.story-cta {
-  display: inline-flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 1.5rem;
-}
-.story-cta .btn-primary {
-  background: var(--sandstone);
-  color: var(--earth);
-  padding: 16px 48px;
-  font-size: 11px;
-}
+.story-cta { display: inline-flex; flex-direction: column; align-items: center; gap: 1.5rem; }
+.story-cta .btn-primary { background: var(--gold); color: var(--earth); padding: 18px 56px; font-size: 12px; }
 .story-cta .btn-primary:hover { background: var(--gold-light); }
+.story-note {
+  font-size: 10px; letter-spacing: 0.18em; text-transform: uppercase;
+  color: rgba(232,221,208,0.25);
+}
 
 /* ─── FOOTER ─── */
 footer {
-  background: var(--earth-mid);
-  padding: 4rem;
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr 1fr;
-  gap: 3rem;
-  align-items: start;
+  background: var(--earth-mid); padding: 5rem;
+  display: grid; grid-template-columns: 1.5fr 1fr 1fr 1fr; gap: 3rem; align-items: start;
 }
-.footer-brand .nav-logo {
-  display: block;
-  margin-bottom: 1rem;
-  color: var(--sandstone-light);
-}
+.footer-brand .nav-logo { display: block; margin-bottom: 1.25rem; color: var(--sandstone-light); font-size: 1.6rem; }
 .footer-brand p {
-  font-size: 11px;
-  font-weight: 300;
-  color: rgba(232,221,208,0.4);
-  line-height: 1.7;
-  max-width: 200px;
+  font-size: 13px; font-weight: 300; color: rgba(232,221,208,0.4);
+  line-height: 1.8; max-width: 220px;
 }
+.footer-tm { font-size: 10px; letter-spacing: 0.1em; color: rgba(184,154,90,0.45); margin-top: 1.25rem; }
 .footer-col-title {
-  font-size: 9px;
-  font-weight: 400;
-  letter-spacing: 0.25em;
-  text-transform: uppercase;
-  color: var(--gold);
-  margin-bottom: 1.5rem;
+  font-size: 10px; font-weight: 600; letter-spacing: 0.28em; text-transform: uppercase;
+  color: var(--gold); margin-bottom: 1.75rem;
 }
-.footer-links {
-  list-style: none;
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-}
+.footer-links { list-style: none; display: flex; flex-direction: column; gap: 10px; }
 .footer-links a {
-  font-size: 12px;
-  font-weight: 300;
-  color: rgba(232,221,208,0.45);
-  text-decoration: none;
-  transition: color 0.2s;
+  font-size: 13px; font-weight: 300; color: rgba(232,221,208,0.4);
+  text-decoration: none; transition: color 0.2s;
 }
 .footer-links a:hover { color: var(--sandstone); }
 .footer-bottom {
-  background: var(--earth);
-  padding: 1.25rem 4rem;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
+  background: var(--earth); padding: 1.5rem 5rem;
+  display: flex; justify-content: space-between; align-items: center;
 }
 .footer-bottom p {
-  font-size: 10px;
-  font-weight: 300;
-  letter-spacing: 0.1em;
-  color: rgba(232,221,208,0.25);
+  font-size: 11px; font-weight: 300; letter-spacing: 0.1em;
+  color: rgba(232,221,208,0.22);
 }
 .footer-arabic {
-  font-family: 'Cormorant Garamond', serif;
-  font-size: 1.5rem;
-  color: rgba(200,184,154,0.2);
+  font-family: 'Cormorant Garamond', serif; font-size: 1.75rem;
+  color: rgba(200,184,154,0.18);
 }
 
 /* ─── ANIMATIONS ─── */
-@keyframes fadeUp {
-  to { opacity: 1; transform: translateY(0); }
-}
-@keyframes fadeIn {
-  to { opacity: 1; }
-}
-
-.reveal {
-  opacity: 0;
-  transform: translateY(24px);
-  transition: opacity 0.7s ease, transform 0.7s ease;
-}
-.reveal.visible {
-  opacity: 1;
-  transform: translateY(0);
-}
+@keyframes fadeUp { to { opacity: 1; transform: translateY(0); } }
+@keyframes fadeIn { to { opacity: 1; } }
+.reveal { opacity: 0; transform: translateY(28px); transition: opacity 0.75s ease, transform 0.75s ease; }
+.reveal.visible { opacity: 1; transform: translateY(0); }
 .reveal-delay-1 { transition-delay: 0.1s; }
 .reveal-delay-2 { transition-delay: 0.2s; }
 .reveal-delay-3 { transition-delay: 0.3s; }
@@ -1029,32 +686,30 @@ footer {
 .reveal-delay-5 { transition-delay: 0.5s; }
 
 /* ─── MOBILE ─── */
-@media (max-width: 900px) {
+@media (max-width: 960px) {
   nav { padding: 1.25rem 1.5rem; }
-  nav.scrolled { padding: 0.75rem 1.5rem; }
+  nav.scrolled { padding: 0.9rem 1.5rem; }
   .nav-links { display: none; }
-  #hero { grid-template-columns: 1fr; min-height: auto; }
-  .hero-left { padding: 7rem 2rem 4rem; }
+  #hero { grid-template-columns: 1fr; }
+  .hero-left { padding: 7rem 2.5rem 5rem; }
   .hero-right { display: none; }
-  .philosophy-inner { grid-template-columns: 1fr; gap: 3rem; padding: 0 2rem; }
-  .values-inner, .products-inner, .lines-inner, .identity-inner, .launch-inner, .story-inner { padding: 0 2rem; }
+  .philosophy-inner, .values-inner, .products-inner, .lines-inner,
+  .identity-inner, .launch-inner, .story-inner { padding: 0 2rem; }
+  .philosophy-inner { grid-template-columns: 1fr; gap: 3.5rem; }
   .values-grid { grid-template-columns: 1fr 1fr; }
-  .value-card { border-bottom: 1px solid rgba(42,36,32,0.08); }
-  .product-lines { grid-template-columns: 1fr 1fr; }
-  .product-line-wide { grid-template-columns: 1fr; }
+  .product-set-hero { grid-template-columns: 1fr; }
+  .product-individuals { grid-template-columns: 1fr; }
+  .products-header { grid-template-columns: 1fr; }
   .lines-grid { grid-template-columns: 1fr 1fr; }
-  .identity-grid { grid-template-columns: 1fr; }
-  .phases-grid { grid-template-columns: 1fr; }
-  footer { grid-template-columns: 1fr 1fr; }
-  .values-header { flex-direction: column; align-items: flex-start; gap: 1rem; }
-  .products-header { flex-direction: column; align-items: flex-start; gap: 1rem; }
-  .products-header p { text-align: left; }
+  .identity-grid, .phases-grid { grid-template-columns: 1fr; }
+  footer { grid-template-columns: 1fr 1fr; padding: 3rem 2rem; }
+  .footer-bottom { padding: 1.25rem 2rem; }
+  .philosophy-stat { flex-direction: column; gap: 1.5rem; }
 }
 </style>
 </head>
 <body>
 
-<!-- Cursor -->
 <div class="cursor" id="cursor"></div>
 <div class="cursor-ring" id="cursor-ring"></div>
 
@@ -1065,7 +720,6 @@ footer {
     <li><a href="#philosophy">Philosophy</a></li>
     <li><a href="#products">Products</a></li>
     <li><a href="#lines">Collections</a></li>
-    <li><a href="#identity">Identity</a></li>
     <li><a href="#launch">Launch</a></li>
   </ul>
   <a href="#story" class="nav-cta">Get Early Access</a>
@@ -1074,24 +728,28 @@ footer {
 <!-- HERO -->
 <section id="hero">
   <div class="hero-left">
-    <div class="hero-eyebrow">Mjohnson IGP LLC &nbsp;·&nbsp; Project Khair</div>
+    <div class="hero-eyebrow">Organic Thai Kapok · Handcrafted in Thailand</div>
     <h1 class="hero-title">
-      The Good<br>That <em>Flows</em><br>Into Your Life.
+      <strong>Khair — خير</strong>
+      The Good<br>That <em>Flows</em><br>Into Your<br>Life.
     </h1>
     <p class="hero-body">
-      A wellness brand built on goodness, presence, and intentional living — creating products that elevate your rituals and ground your life.
+      An eco-luxury wellness brand built on a single belief — that goodness begins with presence. Our meditation cushions are handcrafted in Thailand from 100% organic Thai kapok. Nothing synthetic. Nothing unnecessary.
     </p>
     <div class="hero-actions">
-      <a href="#products" class="btn-primary">Explore the Line</a>
+      <a href="#products" class="btn-primary">Shop the Collection</a>
       <a href="#philosophy" class="btn-ghost">Our Philosophy</a>
     </div>
   </div>
   <div class="hero-right">
     <div class="hero-visual">
       <div class="hero-visual-inner">
-        <div style="font-family:'Cormorant Garamond',serif;font-size:6rem;color:rgba(42,36,32,0.12);line-height:1;text-align:center;">خير</div>
-        <div class="cushion-illustration"></div>
-        <div style="font-size:10px;letter-spacing:0.2em;text-transform:uppercase;color:var(--earth-soft);margin-top:1rem;">Khair Stillness Collection</div>
+        <div class="cushion-stack">
+          <div style="font-family:'Cormorant Garamond',serif;font-size:5rem;color:rgba(42,36,32,0.1);line-height:1;text-align:center;margin-bottom:0.5rem;">خير</div>
+          <div class="zafu"></div>
+          <div class="zabuton"></div>
+          <div class="hero-visual-label">Thai Kapok Meditation Set</div>
+        </div>
       </div>
     </div>
     <div class="hero-tag">
@@ -1104,26 +762,38 @@ footer {
 <!-- MARQUEE -->
 <div class="marquee-bar" aria-hidden="true">
   <div class="marquee-track">
-    <span class="marquee-item">Purity <span class="marquee-dot">·</span></span>
-    <span class="marquee-item">Presence <span class="marquee-dot">·</span></span>
-    <span class="marquee-item">Goodness <span class="marquee-dot">·</span></span>
-    <span class="marquee-item">Simplicity <span class="marquee-dot">·</span></span>
-    <span class="marquee-item">Ritual <span class="marquee-dot">·</span></span>
-    <span class="marquee-item">Khair Flow <span class="marquee-dot">·</span></span>
-    <span class="marquee-item">Khair Stillness <span class="marquee-dot">·</span></span>
-    <span class="marquee-item">Khair Home <span class="marquee-dot">·</span></span>
-    <span class="marquee-item">Khair Rituals <span class="marquee-dot">·</span></span>
-    <span class="marquee-item">Made in Thailand <span class="marquee-dot">·</span></span>
-    <span class="marquee-item">Purity <span class="marquee-dot">·</span></span>
-    <span class="marquee-item">Presence <span class="marquee-dot">·</span></span>
-    <span class="marquee-item">Goodness <span class="marquee-dot">·</span></span>
-    <span class="marquee-item">Simplicity <span class="marquee-dot">·</span></span>
-    <span class="marquee-item">Ritual <span class="marquee-dot">·</span></span>
-    <span class="marquee-item">Khair Flow <span class="marquee-dot">·</span></span>
-    <span class="marquee-item">Khair Stillness <span class="marquee-dot">·</span></span>
-    <span class="marquee-item">Khair Home <span class="marquee-dot">·</span></span>
-    <span class="marquee-item">Khair Rituals <span class="marquee-dot">·</span></span>
-    <span class="marquee-item">Made in Thailand <span class="marquee-dot">·</span></span>
+    <span class="marquee-item accent">Organic Thai Kapok</span>
+    <span class="marquee-item">·</span>
+    <span class="marquee-item">Handcrafted in Thailand</span>
+    <span class="marquee-item">·</span>
+    <span class="marquee-item accent">Nothing Synthetic</span>
+    <span class="marquee-item">·</span>
+    <span class="marquee-item">100% Cotton Shell</span>
+    <span class="marquee-item">·</span>
+    <span class="marquee-item accent">KHAIR™</span>
+    <span class="marquee-item">·</span>
+    <span class="marquee-item">Goodness in Every Breath</span>
+    <span class="marquee-item">·</span>
+    <span class="marquee-item accent">Zafu · Zabuton · Set</span>
+    <span class="marquee-item">·</span>
+    <span class="marquee-item">Made for Your Practice</span>
+    <span class="marquee-item">·</span>
+    <span class="marquee-item accent">Organic Thai Kapok</span>
+    <span class="marquee-item">·</span>
+    <span class="marquee-item">Handcrafted in Thailand</span>
+    <span class="marquee-item">·</span>
+    <span class="marquee-item accent">Nothing Synthetic</span>
+    <span class="marquee-item">·</span>
+    <span class="marquee-item">100% Cotton Shell</span>
+    <span class="marquee-item">·</span>
+    <span class="marquee-item accent">KHAIR™</span>
+    <span class="marquee-item">·</span>
+    <span class="marquee-item">Goodness in Every Breath</span>
+    <span class="marquee-item">·</span>
+    <span class="marquee-item accent">Zafu · Zabuton · Set</span>
+    <span class="marquee-item">·</span>
+    <span class="marquee-item">Made for Your Practice</span>
+    <span class="marquee-item">·</span>
   </div>
 </div>
 
@@ -1139,8 +809,22 @@ footer {
         KHAIR was created for modern, intentional individuals seeking calm and clarity. Not performance. Not aesthetics. A return to yourself — through materials that feel clean, products that pull you into the moment, and rituals that add meaning to ordinary days.
       </p>
       <p class="reveal reveal-delay-3">
-        Every product is intentional equipment for a grounded life. This is not yoga gear. This is goodness you can feel.
+        Handcrafted in Thailand from organic kapok fiber — the ancient fill of the kapok tree, harvested without harm. Every cushion supports your posture, grounds your practice, and lasts a lifetime. This is not yoga gear. This is goodness you can feel.
       </p>
+      <div class="philosophy-stat reveal reveal-delay-4">
+        <div class="stat-item">
+          <div class="stat-num">100%</div>
+          <div class="stat-label">Organic Thai Kapok</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-num">0</div>
+          <div class="stat-label">Synthetic Materials</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-num">∞</div>
+          <div class="stat-label">Lifetime of Practice</div>
+        </div>
+      </div>
     </div>
     <div class="philosophy-quote reveal reveal-delay-2">
       <blockquote>
@@ -1155,10 +839,8 @@ footer {
 <section id="values">
   <div class="values-inner">
     <div class="values-header">
-      <div>
-        <div class="section-label reveal">Brand Values</div>
-        <h2 class="section-title reveal reveal-delay-1">Five pillars.<br><em>One intention.</em></h2>
-      </div>
+      <div class="section-label reveal">Brand Values</div>
+      <h2 class="section-title reveal reveal-delay-1">Five pillars.<br><em>One intention.</em></h2>
     </div>
     <div class="values-grid">
       <div class="value-card reveal">
@@ -1195,96 +877,93 @@ footer {
   <div class="products-inner">
     <div class="products-header">
       <div>
-        <div class="section-label reveal">Product Architecture</div>
-        <h2 class="section-title reveal reveal-delay-1">Every ritual<br><em>covered.</em></h2>
+        <div class="section-label reveal">The Collection</div>
+        <h2 class="section-title reveal reveal-delay-1">Start with<br>the <em>Set.</em></h2>
       </div>
-      <p class="reveal reveal-delay-2">Three lines, one intention. From your morning mat to your evening stillness — KHAIR carries you through it all.</p>
+      <div class="products-header-right">
+        <p class="reveal reveal-delay-2">Begin with our flagship Thai Kapok Meditation Set — the complete foundation for your practice. Then build your ritual with individual pieces.</p>
+      </div>
     </div>
 
-    <div class="product-lines">
-      <!-- Core Line -->
+    <!-- FLAGSHIP SET -->
+    <div class="product-set-hero reveal">
+      <div class="set-hero-content">
+        <div class="set-hero-label">Flagship · Start Here</div>
+        <div class="set-hero-title">KHAIR Thai Kapok<br><em>Meditation Set</em></div>
+        <div class="set-hero-sub">The complete foundation for your practice. Zafu + Zabuton, handcrafted in Thailand from 100% organic kapok and cotton shell.</div>
+        <div class="set-hero-items">
+          <div class="set-hero-item">Round Zafu meditation cushion — organic Thai kapok fill</div>
+          <div class="set-hero-item">Matching Zabuton floor mat — ankle, shin & knee support</div>
+          <div class="set-hero-item">100% cotton shell — earth-tone palette</div>
+          <div class="set-hero-item">Made in Thailand · Nothing synthetic</div>
+        </div>
+        <div class="set-price">~$165</div>
+        <div class="set-price-label">Launch pricing · Amazon FBA · Sept 2026</div>
+      </div>
+      <div class="set-visual">
+        <div class="set-zafu-large"></div>
+        <div class="set-zabuton-large"></div>
+        <div class="set-visual-label">Zafu + Zabuton · Thai Kapok Set</div>
+      </div>
+    </div>
+
+    <!-- INDIVIDUAL PRODUCTS -->
+    <div class="product-individuals">
       <div class="product-card reveal">
-        <div class="product-card-line">Khair Stillness</div>
-        <div class="product-icon" style="margin-bottom:1.5rem;">
-          <svg viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <ellipse cx="30" cy="36" rx="24" ry="12" fill="var(--sandstone)" opacity="0.4"/>
-            <ellipse cx="30" cy="32" rx="20" ry="10" fill="var(--sandstone)" opacity="0.7"/>
-            <ellipse cx="30" cy="28" rx="14" ry="7" fill="var(--sandstone)"/>
+        <div class="product-card-label">Khair Stillness · Individual</div>
+        <div class="product-icon">
+          <svg viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <ellipse cx="32" cy="38" rx="26" ry="13" fill="var(--sandstone)" opacity="0.35"/>
+            <ellipse cx="32" cy="34" rx="22" ry="11" fill="var(--sandstone)" opacity="0.65"/>
+            <ellipse cx="32" cy="30" rx="16" ry="8" fill="var(--sandstone)"/>
           </svg>
         </div>
-        <div class="product-name">Meditation Cushion</div>
-        <div class="product-sub">Organic Thai Kapok · Zafu & Zabuton · Studio Bolster</div>
+        <div class="product-name">KHAIR Zafu</div>
+        <div class="product-sub">Round meditation cushion. Organic Thai kapok fill. 100% cotton shell. Elevates the pelvis, aligns the spine, sustains your practice.</div>
         <div class="product-items">
-          <div class="product-item">Khair Zafu (Kapok)</div>
-          <div class="product-item">Khair Zabuton Mat</div>
-          <div class="product-item">Khair Studio Bolster</div>
-          <div class="product-item">Khair Incense & Oils</div>
+          <div class="product-item">Organic Thai kapok fill</div>
+          <div class="product-item">100% cotton shell</div>
+          <div class="product-item">Earth-tone palette</div>
+          <div class="product-item">Handcrafted in Thailand</div>
         </div>
       </div>
 
-      <!-- Flow Line -->
       <div class="product-card dark reveal reveal-delay-1">
-        <div class="product-card-line">Khair Flow</div>
-        <div class="product-icon" style="margin-bottom:1.5rem;">
-          <svg viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <rect x="8" y="24" width="44" height="12" rx="2" fill="var(--sandstone)" opacity="0.3"/>
-            <rect x="8" y="26" width="44" height="8" rx="2" fill="var(--sandstone)" opacity="0.6"/>
-            <rect x="8" y="28" width="44" height="4" rx="1" fill="var(--sandstone)"/>
+        <div class="product-card-label">Khair Stillness · Individual</div>
+        <div class="product-icon">
+          <svg viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <rect x="6" y="26" width="52" height="14" rx="3" fill="var(--sandstone)" opacity="0.25"/>
+            <rect x="6" y="28" width="52" height="10" rx="2" fill="var(--sandstone)" opacity="0.55"/>
+            <rect x="6" y="30" width="52" height="6" rx="1" fill="var(--sandstone)"/>
           </svg>
         </div>
-        <div class="product-name">Yoga & Movement</div>
-        <div class="product-sub">Premium mats, blocks, and straps for intentional practice.</div>
+        <div class="product-name">KHAIR Zabuton</div>
+        <div class="product-sub">Floor meditation mat. Organic Thai kapok fill. Decompresses ankles, shins, and knees. The ground beneath your stillness.</div>
         <div class="product-items">
-          <div class="product-item">Khair Mat</div>
-          <div class="product-item">Khair Block</div>
-          <div class="product-item">Khair Strap</div>
-        </div>
-      </div>
-
-      <!-- Home Line -->
-      <div class="product-card reveal reveal-delay-2" style="background:var(--sandstone-light);">
-        <div class="product-card-line" style="color:var(--earth-soft);">Khair Home</div>
-        <div class="product-icon" style="margin-bottom:1.5rem;">
-          <svg viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <rect x="22" y="16" width="16" height="28" rx="8" fill="var(--earth)" opacity="0.15"/>
-            <rect x="24" y="18" width="12" height="24" rx="6" fill="var(--earth)" opacity="0.25"/>
-            <line x1="30" y1="14" x2="30" y2="8" stroke="var(--gold)" stroke-width="1.5"/>
-            <circle cx="30" cy="7" r="2" fill="var(--gold)"/>
-          </svg>
-        </div>
-        <div class="product-name" style="color:var(--earth);">Home & Space</div>
-        <div class="product-sub" style="color:var(--earth-soft);">Candles, diffusers, and room sprays for calm environments.</div>
-        <div class="product-items">
-          <div class="product-item" style="color:var(--earth-soft);">Khair Candle</div>
-          <div class="product-item" style="color:var(--earth-soft);">Khair Diffuser</div>
-          <div class="product-item" style="color:var(--earth-soft);">Room Sprays</div>
+          <div class="product-item">Organic Thai kapok fill</div>
+          <div class="product-item">100% cotton shell</div>
+          <div class="product-item">Large format floor mat</div>
+          <div class="product-item">Handcrafted in Thailand</div>
         </div>
       </div>
     </div>
 
-    <div class="product-line-wide" style="margin-top:2px;">
-      <!-- Essentials -->
-      <div class="product-card olive-bg reveal reveal-delay-1">
-        <div class="product-card-line">Khair Essentials</div>
-        <div class="product-name">Daily Carry</div>
-        <div class="product-sub">Water bottle, towel, and carry bags — earth tones, zero clutter.</div>
-        <div class="product-items">
-          <div class="product-item" style="color:rgba(255,255,255,0.6);">Khair Water Bottle</div>
-          <div class="product-item" style="color:rgba(255,255,255,0.6);">Khair Towel</div>
-          <div class="product-item" style="color:rgba(255,255,255,0.6);">Khair Bag</div>
+    <!-- STUDIO BOLSTER -->
+    <div class="product-card olive-bg reveal" style="margin-top:3px;">
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:3rem;align-items:center;">
+        <div>
+          <div class="product-card-label">Khair Stillness · B2B</div>
+          <div class="product-name">KHAIR Studio Bolster</div>
+          <div class="product-sub">The primary B2B volume driver. Built for yoga studios, meditation centers, and retreat spaces. Studios buy by the dozen.</div>
+          <div class="product-items" style="margin-top:1.5rem;">
+            <div class="product-item" style="color:rgba(255,255,255,0.65);">Wholesale via Faire.com</div>
+            <div class="product-item" style="color:rgba(255,255,255,0.65);">Studio & retreat partnerships</div>
+            <div class="product-item" style="color:rgba(255,255,255,0.65);">Custom logo available</div>
+          </div>
         </div>
-      </div>
-
-      <!-- Rituals -->
-      <div class="product-card reveal reveal-delay-2" style="background:var(--earth-mid);">
-        <div class="product-card-line" style="color:var(--gold);">Khair Rituals</div>
-        <div class="product-name" style="color:var(--sandstone-light);">Curated Bundles</div>
-        <div class="product-sub" style="color:rgba(232,221,208,0.5);">Morning, evening, and grounding kits. Premium line includes Signature Scents and Weighted Blanket.</div>
-        <div class="product-items">
-          <div class="product-item" style="color:rgba(232,221,208,0.5);">Morning Ritual Kit</div>
-          <div class="product-item" style="color:rgba(232,221,208,0.5);">Evening Ritual Kit</div>
-          <div class="product-item" style="color:rgba(232,221,208,0.5);">Grounding Bundle</div>
-          <div class="product-item" style="color:rgba(232,221,208,0.5);">Khair Signature Scents</div>
+        <div style="text-align:center;padding:2rem;">
+          <div style="font-family:'Cormorant Garamond',serif;font-size:5rem;color:rgba(255,255,255,0.15);line-height:1;">B2B</div>
+          <div style="font-size:11px;letter-spacing:0.2em;text-transform:uppercase;color:rgba(255,255,255,0.4);margin-top:0.5rem;">Studio Edition</div>
         </div>
       </div>
     </div>
@@ -1299,22 +978,23 @@ footer {
     <div class="lines-grid">
       <div class="line-card reveal">
         <div class="line-arabic">خير</div>
-        <div class="line-name">KHAIR FLOW</div>
-        <div class="line-sub">Yoga & Movement</div>
+        <div class="line-name">KHAIR STILLNESS</div>
+        <div class="line-sub">Meditation & Rest</div>
         <div class="line-items">
-          <div class="line-item">Yoga Mats</div>
-          <div class="line-item">Blocks</div>
-          <div class="line-item">Straps</div>
+          <div class="line-item">Thai Kapok Set</div>
+          <div class="line-item">Zafu Cushion</div>
+          <div class="line-item">Zabuton Mat</div>
+          <div class="line-item">Studio Bolster</div>
         </div>
       </div>
       <div class="line-card reveal reveal-delay-1">
         <div class="line-arabic">خير</div>
-        <div class="line-name">KHAIR STILLNESS</div>
-        <div class="line-sub">Meditation & Rest</div>
+        <div class="line-name">KHAIR FLOW</div>
+        <div class="line-sub">Yoga & Movement</div>
         <div class="line-items">
-          <div class="line-item">Meditation Cushions</div>
-          <div class="line-item">Incense</div>
-          <div class="line-item">Essential Oils</div>
+          <div class="line-item">Meditation Mats</div>
+          <div class="line-item">Cork Blocks</div>
+          <div class="line-item">Cotton Straps</div>
         </div>
       </div>
       <div class="line-card reveal reveal-delay-2">
@@ -1322,9 +1002,9 @@ footer {
         <div class="line-name">KHAIR HOME</div>
         <div class="line-sub">Space & Atmosphere</div>
         <div class="line-items">
-          <div class="line-item">Candles</div>
-          <div class="line-item">Diffusers</div>
-          <div class="line-item">Room Sprays</div>
+          <div class="line-item">Thai Herbal Compress</div>
+          <div class="line-item">Plai Recovery Balm</div>
+          <div class="line-item">Organic Room Mist</div>
         </div>
       </div>
       <div class="line-card reveal reveal-delay-3">
@@ -1332,9 +1012,9 @@ footer {
         <div class="line-name">KHAIR ESSENTIALS</div>
         <div class="line-sub">Daily Carry</div>
         <div class="line-items">
-          <div class="line-item">Bags</div>
-          <div class="line-item">Towels</div>
-          <div class="line-item">Bottles</div>
+          <div class="line-item">Linen Eye Pillows</div>
+          <div class="line-item">Cotton Straps</div>
+          <div class="line-item">Carry Bags</div>
         </div>
       </div>
       <div class="line-card reveal reveal-delay-4">
@@ -1344,7 +1024,7 @@ footer {
         <div class="line-items">
           <div class="line-item">Morning Kits</div>
           <div class="line-item">Evening Kits</div>
-          <div class="line-item">Grounding Sets</div>
+          <div class="line-item">Gift Sets</div>
         </div>
       </div>
     </div>
@@ -1354,63 +1034,31 @@ footer {
 <!-- IDENTITY -->
 <section id="identity">
   <div class="identity-inner">
-    <div class="section-label reveal">Brand Identity System</div>
+    <div class="section-label reveal">Brand Identity</div>
     <h2 class="section-title reveal reveal-delay-1">The visual<br><em>language.</em></h2>
-
     <div class="identity-grid">
-      <!-- Palette -->
       <div class="identity-card reveal">
         <div class="identity-card-title">Color Palette</div>
         <div class="palette-swatches">
-          <div class="swatch-row">
-            <div class="swatch" style="background:var(--sandstone);"></div>
-            <div class="swatch-label">Sandstone<span>#C8B89A · Primary</span></div>
-          </div>
-          <div class="swatch-row">
-            <div class="swatch" style="background:var(--earth);"></div>
-            <div class="swatch-label">Deep Earth<span>#2A2420 · Primary</span></div>
-          </div>
-          <div class="swatch-row">
-            <div class="swatch" style="background:var(--olive);"></div>
-            <div class="swatch-label">Olive<span>#7A8B6F · Secondary</span></div>
-          </div>
-          <div class="swatch-row">
-            <div class="swatch" style="background:var(--clay);"></div>
-            <div class="swatch-label">Clay<span>#A0725A · Secondary</span></div>
-          </div>
-          <div class="swatch-row">
-            <div class="swatch" style="background:var(--soft-white);border:1px solid rgba(42,36,32,0.1);"></div>
-            <div class="swatch-label">Soft White<span>#FAF8F4 · Secondary</span></div>
-          </div>
-          <div class="swatch-row">
-            <div class="swatch" style="background:var(--gold);"></div>
-            <div class="swatch-label">Gold (Matte)<span>#B89A5A · Accent</span></div>
-          </div>
+          <div class="swatch-row"><div class="swatch" style="background:var(--sandstone);"></div><div class="swatch-label">Sandstone<span>#C8B89A · Primary</span></div></div>
+          <div class="swatch-row"><div class="swatch" style="background:var(--earth);"></div><div class="swatch-label">Deep Earth<span>#2A2420 · Primary</span></div></div>
+          <div class="swatch-row"><div class="swatch" style="background:var(--olive);"></div><div class="swatch-label">Olive<span>#7A8B6F · Secondary</span></div></div>
+          <div class="swatch-row"><div class="swatch" style="background:var(--clay);"></div><div class="swatch-label">Clay<span>#A0725A · Secondary</span></div></div>
+          <div class="swatch-row"><div class="swatch" style="background:var(--soft-white);border:1px solid rgba(42,36,32,0.1);"></div><div class="swatch-label">Soft White<span>#FAF8F4 · Base</span></div></div>
+          <div class="swatch-row"><div class="swatch" style="background:var(--gold);"></div><div class="swatch-label">Gold (Matte)<span>#B89A5A · Accent</span></div></div>
         </div>
       </div>
-
-      <!-- Taglines & Voice -->
       <div class="identity-card reveal reveal-delay-1">
-        <div class="identity-card-title">Tagline Options</div>
+        <div class="identity-card-title">Tagline — Locked ✦</div>
         <div class="tagline-list">
-          <div class="tagline-item active" onclick="selectTagline(this)">
-            Goodness in Every Breath <span class="check">✦</span>
-          </div>
-          <div class="tagline-item" onclick="selectTagline(this)">
-            Where Presence Begins
-          </div>
-          <div class="tagline-item" onclick="selectTagline(this)">
-            Made for Your Better Self
-          </div>
-          <div class="tagline-item" onclick="selectTagline(this)">
-            The Ritual of Goodness
-          </div>
-          <div class="tagline-item" onclick="selectTagline(this)">
-            Good Energy, Every Day
-          </div>
+          <div class="tagline-item active">Goodness in Every Breath <span class="check">✦</span></div>
+          <div class="tagline-item" style="opacity:0.35;cursor:default;font-size:1rem;">Where Presence Begins</div>
+          <div class="tagline-item" style="opacity:0.35;cursor:default;font-size:1rem;">Made for Your Better Self</div>
+          <div class="tagline-item" style="opacity:0.35;cursor:default;font-size:1rem;">The Ritual of Goodness</div>
+          <div class="tagline-item" style="opacity:0.35;cursor:default;font-size:1rem;">Good Energy, Every Day</div>
         </div>
-        <div style="margin-top:2rem;">
-          <div class="identity-card-title" style="margin-bottom:1rem;">Tone of Voice</div>
+        <div style="margin-top:2.5rem;">
+          <div class="identity-card-title" style="margin-bottom:1.25rem;">Tone of Voice</div>
           <div class="voice-list">
             <div class="voice-pill">Calm</div>
             <div class="voice-pill">Minimal</div>
@@ -1421,27 +1069,25 @@ footer {
           </div>
         </div>
       </div>
-
-      <!-- Typography -->
       <div class="identity-card reveal reveal-delay-2">
-        <div class="identity-card-title">Typography System</div>
+        <div class="identity-card-title">Typography</div>
         <div class="type-samples">
           <div>
-            <div style="font-size:9px;letter-spacing:0.15em;text-transform:uppercase;color:var(--gold-muted);margin-bottom:6px;">Display — Cormorant Garamond</div>
-            <div class="type-sample-serif">KHAIR</div>
-            <div class="type-sample-serif" style="font-style:italic;font-size:1.8rem;color:var(--clay);">Goodness</div>
+            <div style="font-size:9px;letter-spacing:0.15em;text-transform:uppercase;color:var(--gold-muted);margin-bottom:8px;">Display — Cormorant Garamond</div>
+            <div class="type-sample-serif">KHAIR ™</div>
+            <div class="type-sample-serif" style="font-style:italic;font-size:2rem;color:var(--clay);">Goodness</div>
           </div>
           <div>
-            <div style="font-size:9px;letter-spacing:0.15em;text-transform:uppercase;color:var(--gold-muted);margin-bottom:6px;">Label — Jost</div>
-            <div class="type-sample-sans">Khair Stillness Collection</div>
+            <div style="font-size:9px;letter-spacing:0.15em;text-transform:uppercase;color:var(--gold-muted);margin-bottom:8px;">Label — Jost Medium</div>
+            <div class="type-sample-sans">KHAIR Stillness Collection</div>
           </div>
           <div>
-            <div style="font-size:9px;letter-spacing:0.15em;text-transform:uppercase;color:var(--gold-muted);margin-bottom:6px;">Body — Jost Light</div>
-            <div class="type-sample-body">Goodness begins with presence. Made for your quiet moments.</div>
+            <div style="font-size:9px;letter-spacing:0.15em;text-transform:uppercase;color:var(--gold-muted);margin-bottom:8px;">Body — Jost Light</div>
+            <div class="type-sample-body">Goodness begins with presence. Made for your quiet moments, crafted with intention.</div>
           </div>
-          <div style="padding:1rem;background:var(--earth);text-align:center;">
-            <div style="font-family:'Cormorant Garamond',serif;font-size:3rem;color:rgba(200,184,154,0.4);line-height:1;">خير</div>
-            <div style="font-size:9px;letter-spacing:0.15em;text-transform:uppercase;color:var(--gold);margin-top:4px;">Arabic Emboss Element</div>
+          <div style="padding:1.25rem;background:var(--earth);text-align:center;">
+            <div style="font-family:'Cormorant Garamond',serif;font-size:3.5rem;color:rgba(200,184,154,0.35);line-height:1;">خير</div>
+            <div style="font-size:9px;letter-spacing:0.18em;text-transform:uppercase;color:var(--gold);margin-top:6px;">Arabic Emboss Element</div>
           </div>
         </div>
       </div>
@@ -1452,43 +1098,43 @@ footer {
 <!-- LAUNCH -->
 <section id="launch">
   <div class="launch-inner">
-    <div class="section-label reveal">Go-To-Market Strategy</div>
+    <div class="section-label reveal">Go-To-Market</div>
     <h2 class="section-title reveal reveal-delay-1">Three phases.<br><em>One brand.</em></h2>
     <div class="phases-grid">
       <div class="phase-card reveal">
         <div class="phase-num">01</div>
-        <div class="phase-title">Identity & Foundations</div>
+        <div class="phase-title">Foundations — Now</div>
         <div class="phase-items">
-          <div class="phase-item">Finalize brand identity system</div>
-          <div class="phase-item">Source & qualify Thai Kapok suppliers</div>
-          <div class="phase-item">Build product prototypes</div>
-          <div class="phase-item">Create brand photography</div>
-          <div class="phase-item">Build Shopify store architecture</div>
-          <div class="phase-item">SGS certification verification</div>
+          <div class="phase-item done">Brand identity complete ✓</div>
+          <div class="phase-item done">KHAIR™ trademark filed ✓</div>
+          <div class="phase-item done">Thai supplier qualification underway ✓</div>
+          <div class="phase-item">Amazon Brand Registry</div>
+          <div class="phase-item">Product photography</div>
+          <div class="phase-item">FBA prep & logistics</div>
         </div>
       </div>
       <div class="phase-card reveal reveal-delay-1">
         <div class="phase-num">02</div>
-        <div class="phase-title">Soft Launch</div>
+        <div class="phase-title">Launch — Sept/Oct 2026</div>
         <div class="phase-items">
-          <div class="phase-item">Limited drop: Khair Meditation Cushion + Incense</div>
-          <div class="phase-item">Influencer seeding — micro wellness creators</div>
-          <div class="phase-item">UGC content campaign</div>
-          <div class="phase-item">D2C at $78–$135 retail tier</div>
-          <div class="phase-item">B2B studio outreach at wholesale</div>
-          <div class="phase-item">Gather first-party customer data</div>
+          <div class="phase-item">Amazon FBA — Thai Kapok Set (hero ASIN)</div>
+          <div class="phase-item">Individual Zafu & Zabuton listings</div>
+          <div class="phase-item">PPC — review velocity focus</div>
+          <div class="phase-item">Studio Bolster — Faire.com B2B</div>
+          <div class="phase-item">Micro wellness influencer seeding</div>
+          <div class="phase-item">January wellness spike target</div>
         </div>
       </div>
       <div class="phase-card reveal reveal-delay-2">
         <div class="phase-num">03</div>
-        <div class="phase-title">Expansion</div>
+        <div class="phase-title">Expansion — 2027</div>
         <div class="phase-items">
-          <div class="phase-item">Full KHAIR product line launch</div>
+          <div class="phase-item">KHAIR Flow — yoga accessories</div>
+          <div class="phase-item">KHAIR Home — Thai herbal line</div>
+          <div class="phase-item">KHAIR Essentials — accessories</div>
           <div class="phase-item">Studio & retreat partnerships</div>
-          <div class="phase-item">Apparel line (minimal, earth tones)</div>
           <div class="phase-item">Subscription ritual boxes</div>
-          <div class="phase-item">Khair Studio Edition (premium)</div>
-          <div class="phase-item">Khair Signature Scents & Weighted Blanket</div>
+          <div class="phase-item">International wholesale</div>
         </div>
       </div>
     </div>
@@ -1503,11 +1149,11 @@ footer {
       Goodness you<br>can <em>feel.</em>
     </h2>
     <p class="story-body">
-      KHAIR was created to bring goodness back into daily life. In a world of noise, KHAIR is a return to presence — a reminder that wellness is not a luxury, but a ritual of being fully alive. Every product is designed to elevate your space, your practice, and your inner state.
+      KHAIR — خير — means goodness in Arabic. It was created to bring that goodness back into daily life. Handcrafted in Thailand from organic kapok fiber — the ancient fill of the kapok tree, harvested without harm — each cushion is designed to support your practice, ground your space, and remind you that presence is the beginning of everything.
     </p>
     <div class="story-cta">
       <a href="mailto:info@khairwellness.com" class="btn-primary">Join the Founding Circle</a>
-      <span style="font-size:10px;letter-spacing:0.15em;text-transform:uppercase;color:rgba(232,221,208,0.3);">Early access · Limited launch</span>
+      <div class="story-note">Early access · Limited launch · September 2026</div>
     </div>
   </div>
 </section>
@@ -1516,16 +1162,16 @@ footer {
 <footer>
   <div class="footer-brand">
     <a href="#" class="nav-logo" style="color:var(--sandstone-light);">KHAIR <span>خير</span></a>
-    <p>Goodness, presence, and intentional living. Elevated wellness for a grounded life.</p>
+    <p>Goodness, presence, and intentional living. Organic Thai kapok meditation cushions — handcrafted in Thailand.</p>
+    <div class="footer-tm">KHAIR™ · USPTO Serial No. 99887138 · © 2026 Mjohnson IGP LLC</div>
   </div>
   <div>
-    <div class="footer-col-title">Collections</div>
+    <div class="footer-col-title">Products</div>
     <ul class="footer-links">
-      <li><a href="#lines">Khair Flow</a></li>
-      <li><a href="#lines">Khair Stillness</a></li>
-      <li><a href="#lines">Khair Home</a></li>
-      <li><a href="#lines">Khair Essentials</a></li>
-      <li><a href="#lines">Khair Rituals</a></li>
+      <li><a href="#products">Thai Kapok Set</a></li>
+      <li><a href="#products">KHAIR Zafu</a></li>
+      <li><a href="#products">KHAIR Zabuton</a></li>
+      <li><a href="#products">Studio Bolster</a></li>
     </ul>
   </div>
   <div>
@@ -1549,55 +1195,38 @@ footer {
   </div>
 </footer>
 <div class="footer-bottom">
-  <p>© 2026 KHAIR — Mjohnson IGP LLC. All rights reserved.</p>
+  <p>© 2026 KHAIR™ — Mjohnson IGP LLC · All rights reserved · Handcrafted in Thailand</p>
   <div class="footer-arabic">خير</div>
 </div>
 
 <script>
-// Custom cursor
 const cursor = document.getElementById('cursor');
 const ring = document.getElementById('cursor-ring');
 let mouseX = 0, mouseY = 0, ringX = 0, ringY = 0;
 document.addEventListener('mousemove', e => {
   mouseX = e.clientX; mouseY = e.clientY;
-  cursor.style.transform = `translate(${mouseX - 4}px, ${mouseY - 4}px)`;
+  cursor.style.transform = `translate(${mouseX - 5}px, ${mouseY - 5}px)`;
 });
 function animateRing() {
-  ringX += (mouseX - ringX - 16) * 0.12;
-  ringY += (mouseY - ringY - 16) * 0.12;
+  ringX += (mouseX - ringX - 19) * 0.1;
+  ringY += (mouseY - ringY - 19) * 0.1;
   ring.style.transform = `translate(${ringX}px, ${ringY}px)`;
   requestAnimationFrame(animateRing);
 }
 animateRing();
 
-// Nav scroll
 const nav = document.getElementById('nav');
 window.addEventListener('scroll', () => {
   nav.classList.toggle('scrolled', window.scrollY > 60);
 });
 
-// Reveal on scroll
 const reveals = document.querySelectorAll('.reveal');
 const observer = new IntersectionObserver(entries => {
   entries.forEach(e => {
-    if (e.isIntersecting) {
-      e.target.classList.add('visible');
-      observer.unobserve(e.target);
-    }
+    if (e.isIntersecting) { e.target.classList.add('visible'); observer.unobserve(e.target); }
   });
-}, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+}, { threshold: 0.08, rootMargin: '0px 0px -30px 0px' });
 reveals.forEach(el => observer.observe(el));
-
-// Tagline selector
-function selectTagline(el) {
-  document.querySelectorAll('.tagline-item').forEach(t => {
-    t.classList.remove('active');
-    const chk = t.querySelector('.check');
-    if (chk) chk.remove();
-  });
-  el.classList.add('active');
-  el.insertAdjacentHTML('beforeend', '<span class="check">✦</span>');
-}
 </script>
 </body>
 </html>
